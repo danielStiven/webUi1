@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
    var searchField = document.getElementById('searchField');
    var repoList = document.getElementById('repoList');
 
-
+    /** Funcion para cargar los chistes. **/
    var cargarChistes = function (){
       getAjax('http://api.icndb.com/jokes/random', null).then(
           function(data){
@@ -23,6 +23,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
       });
    };
 
+   /** Funcion para buscar los repositorios. **/
     var buscarRepo = function (){
         getAjax('https://api.github.com/search/repositories', { q : searchField.value }).then(
             function(data){
@@ -50,6 +51,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         });
     };
 
+   /** Funcion para manejar peticiones ajax con GET. **/
    var getAjax = function(url, config){
        return  new Promise(function(resolve, reject) {
            var  http = new XMLHttpRequest();
@@ -80,7 +82,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
    document.getElementById('boton1').addEventListener('click', cargarChistes);
    searchField.addEventListener('change', buscarRepo);
-   searchField.value =  'JavaScript'; // new CustomEvent("name-of-event", { "detail": "Example of an event" })
+   searchField.value =  'JavaScript';
    searchField.dispatchEvent(new CustomEvent("change"));
 
 });
